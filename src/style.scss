@@ -1,0 +1,19 @@
+  @import "~office-ui-fabric-react/dist/css/fabric.css";
+  @import "~tachyons/css/tachyons.css";
+  @import "~react-redux-toastr/lib/css/react-redux-toastr.min.css";
+
+  @import "./hr.scss";
+
+  html,
+  body {
+    height: 100%;
+    overflow: auto;
+  }
+
+  .mw90 {
+    max-width: 90%;
+  }
+
+  .nw320 {
+    max-width: 450px;
+  }
