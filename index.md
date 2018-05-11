@@ -1,5 +1,7 @@
 # 流量报表
 
+为app来生成html的界面，并添加数据源中的动态数据。
+
 [项目地址](http://code.corp.rs.com/xiao.feng695/chart-design-static.git)
 
 [线上地址](https://rsinfo-d.mmall.com)
@@ -19,6 +21,7 @@
   - [删除面板](#删除面板)
 - [预览](#预览)
   - [预览效果](#预览效果)
+- [关于动态属性](#关于动态属性)
 
 ## 主页
 
@@ -87,6 +90,7 @@
   - APP流量报表
 - 数据源设置：配置数据源，用于加载数据。
 - 数据源中的数据：查看【数据源设置】中配置的数据源的数据
+- 组件。通过拖拽最左侧的组件来组合。
 
 #### 组件说明
 
@@ -249,3 +253,23 @@
 ### 预览效果
 
 ![previewd](./images/preview.d.png)
+
+### 关于动态属性
+
+动态属性，依赖于【数据源中的数据】，是从数据中使用特定语法去获取数据。[语法说明（需要翻墙）。](http://docs.jsonata.org/)
+
+举个例子,如图配置：
+
+![example](./images/source.example.png)
+
+这里选择了一个数据源名为【test_02】，数据也已经展示在了图右侧的下方。
+
+【test_02】的数据是一个数组，数组中的每一项都有MALL_CODE，MALL_NAME，REGION_TYPE，ORDER_AMOUNT这4个字段。
+
+获取所有的【MALL_NAME】： $$."test_02"."MALL_NAME" 即可。 (这里$$代表根，根的数据路径是data，相当于data.test_02.MMALL_NAME)
+
+还支持一个简单的聚合：$average,$min,$max,$sum等，具体的查看[文档](http://docs.jsonata.org/aggregation-functions.html)。
+
+![example](./images/source.example1.png)
+
+上图中，线图的横轴设置的轴数据，取的就是test_02数据源中的MALL_NAME字段，而曲线设置中的第一个曲线的数据取的是test_02数据源中的ORDER_AMOUNT字段，这样就会生成如图的线图。
